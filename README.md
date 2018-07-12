@@ -172,9 +172,9 @@ DeerU接口扩展，返回json数据
 > 
 > </div>
 
-# 接口
+## 接口
 
-## 获取config
+### 获取config
 
 获取配置中设置为到context的所有配置
 
@@ -198,7 +198,7 @@ DeerU接口扩展，返回json数据
             }
         }
 
-## 获取文章
+### 获取文章
 
   - url ： `article/<int:article_id>`
 
@@ -219,7 +219,7 @@ DeerU接口扩展，返回json数据
         
         }
 
-## 获取文章列表
+### 获取文章列表
 
   - url ： `article_list`
 
@@ -263,7 +263,7 @@ DeerU接口扩展，返回json数据
         
         }
 
-## 获取分类
+### 获取分类
 
   - url ： `category/<int:category_id>`
 
@@ -280,7 +280,7 @@ DeerU接口扩展，返回json数据
         
         }
 
-## 获取分类列表
+### 获取分类列表
 
   - url ： `category_list`
 
@@ -304,7 +304,7 @@ DeerU接口扩展，返回json数据
         
         }
 
-## 获取分类树
+### 获取分类树
 
 返回按父子结构整理后的分类list
 
@@ -338,7 +338,7 @@ DeerU接口扩展，返回json数据
         
         }
 
-## 获取标签
+### 获取标签
 
   - url ： `tag/<int:tag_id>`
 
@@ -354,9 +354,63 @@ DeerU接口扩展，返回json数据
             'tag_meta': TagMeta,
         
         }
-        
 
-# 获取文章的评论列表
+### 获取标签列表
+
+  - url ： `tag_list`
+
+  - 请求方法 ： `GET`
+
+  - 参数 ：
+
+  - 返回值:
+    
+        {
+            'code':0,
+            'tag_list': [ 
+        
+                    {
+                        'tag': Tag,
+                        'tag_meta': TagMeta,
+                    },
+        
+                    {...} 
+            ]
+        
+        }
+
+### 创建评论
+
+创建评论，需要注意 `POST` 请求需要在 cookies 里添加 csrftoken
+
+  - url ： `comment/create`
+
+  - 请求方法 ： `POST`
+
+  - 参数 ：
+    
+    >   - content : 内容
+    > 
+    >   - email : 可不填
+    > 
+    >   - nickname : nickname
+    > 
+    >   - type : type，可选项如下：
+    >     
+    >     >   - 201 : 对文章评论
+    >     >   - 202 : 对评论评论
+    > 
+    >   - to\_id : 回复的评论id，具体说明参见 [Comment](#comment-json) 结构说明，以及DeerU源码
+    > 
+    >   - root\_id : 根评论id，具体说明参见 [Comment](#comment-json) 结构说明，以及DeerU源码
+
+  - 返回值:
+    
+        {
+            'code':0
+        }
+
+### 获取文章的评论列表
 
 返回父子结构的评论list
 
@@ -392,4 +446,3 @@ DeerU接口扩展，返回json数据
             ]
         
         }
-        

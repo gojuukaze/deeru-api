@@ -7,7 +7,7 @@ with open("README.rst", encoding='utf-8') as f:
 
 setup(
     name="deeru-api",
-    version="0.0.6",
+    version="1.0.0",
     description="DeerU返回json数据接口",
     long_description=long_description,
     license="GUN V3",
@@ -28,7 +28,7 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         'Topic :: Internet :: WWW/HTTP :: WSGI',

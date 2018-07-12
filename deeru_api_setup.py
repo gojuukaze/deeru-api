@@ -10,7 +10,7 @@ setup(
     version="1.0.0",
     description="DeerU返回json数据接口",
     long_description=long_description,
-    license="GUN V3",
+    license="GPL V3",
 
     url="https://github.com/gojuukaze/deeru-api",
     author="gojuukaze",

@@ -411,6 +411,8 @@ DeerU接口扩展，返回json数据
     > 
     >   - nickname : nickname
     > 
+    >   - article_id : 文章id
+    > 
     >   - type : type，可选项如下：
     >     
     >     >   - 201 : 对文章评论

@@ -7,7 +7,7 @@ with open("README.rst", encoding='utf-8') as f:
 
 setup(
     name="deeru-api",
-    version="1.0.1",
+    version="1.0.2",
     description="DeerU返回json数据接口",
     long_description=long_description,
     license="GPL V3",

@@ -71,3 +71,10 @@ def comment_list_to_dict(comment_list):
             else:
                 c.pop('children')
     return comment_list
+
+
+def flatpage_to_dict(flatpage):
+    result = model_to_dict(flatpage)
+    result['created_time'] = flatpage.created_time
+    result['modified_time'] = flatpage.modified_time
+    return result

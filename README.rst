@@ -21,6 +21,7 @@ DeerU接口扩展，返回json数据
             + `Tag <tag-json_>`_
             + `TagMeta <tag-meta-json_>`_
             + `Comment <comment-json_>`_
+            + `FlatPage <flatpage-json_>`_
 
     * `接口`_
 
@@ -162,6 +163,19 @@ DeerU接口扩展，返回json数据
             'to_id': -1, # 回复的评论id。对文章评论时，这一项无意义。
             'root_id': -1, # 根评论id。对文章评论时，这一项无意义；对评论回复时就是评论的id，对回复回复时，是最早的那条评论id
         }
+
+    .. _flatpage-json:
+
+    * FlatPage:: 
+
+        {
+            'id': 12,
+            'content': 'xxx', # 正文
+            'title': 'title',
+            'created_time': '2018-03-12T11:23:00',
+            'modified_time': '2018-03-12T11:23:00',
+        }
+
 
 
 接口
@@ -451,5 +465,23 @@ DeerU接口扩展，返回json数据
 
                 {...} 
         ]
+
+    }
+
+
+获取单页面
+````````````
+
+* url ： ``flatpage/<path:url>``
+
+* 请求方法 ： ``GET``
+
+* 参数 ： 
+
+* 返回值:: 
+
+    {
+        'code':0,
+        'flatpage': FlatPage
 
     }

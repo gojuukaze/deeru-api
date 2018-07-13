@@ -17,7 +17,9 @@ urlpatterns = [
     path('tag/<int:tag_id>', views.detail_tag_view, name='detail_tag'),
     path('tag_list', views.tag_list_view, name='tag_list'),
 
-    path('comment/create', views.create_comment, name='create_comment'),
+    path('comment/create', views.create_comment_view, name='create_comment'),
     path('comment_list', views.comment_list_view, name='comment_list'),
+
+    path('flatpage<path:url>', views.detail_flatpage_view, name='detail_flatpage'),
 
 ]

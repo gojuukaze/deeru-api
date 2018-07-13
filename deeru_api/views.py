@@ -3,14 +3,16 @@ from django.forms import model_to_dict
 
 from app.app_models.content_model import Article
 from app.db_manager.content_manager import get_article_meta_by_article, get_article_by_id, filter_article_order_by_id, \
-    filter_article_by_category, filter_article_by_tag, get_category_by_id, get_tag_by_id, get_all_category, get_all_tag
+    filter_article_by_category, filter_article_by_tag, get_category_by_id, get_tag_by_id, get_all_category, get_all_tag, \
+    get_flatpage_by_url, get_flatpage_by_id
 
 from app.ex_paginator import DeerUPaginator
 from app.forms import CommentForm
 from app.manager import get_config_context
+from app.manager.content_manager import get_flatpage_url_dict
 from app.manager.ct_manager import get_category_tree2
-from deeru_api.manager import article_to_dict, comment_to_dict, article_to_preview_dict, detail_category_dict, \
-    detail_tag_dict, category_tree_to_dict, comment_list_to_dict
+from deeru_api.manager import article_to_dict, article_to_preview_dict, detail_category_dict, \
+    detail_tag_dict, category_tree_to_dict, comment_list_to_dict, flatpage_to_dict
 from deeru_api.response import JsonSuccessResponse, JsonFailResponse
 
 
@@ -47,7 +49,7 @@ def article_list_view(request):
     page = int(request.GET.get('page', 1))
 
     if page < 1:
-        return JsonFailResponse({'msg': 'page无效'})
+        return JsonFailResponse({'code': 404, 'msg': '404'})
 
     result = {}
 
@@ -75,7 +77,7 @@ def article_list_view(request):
         return JsonFailResponse({'msg': '参数filter_type错误'})
 
     if page > paginator.end_index:
-        return JsonFailResponse({'msg': 'page无效'})
+        return JsonFailResponse({'code': 404, 'msg': '404'})
 
     article_list = paginator.page(page).object_list
     result['article_list'] = []
@@ -94,6 +96,8 @@ def article_list_view(request):
 
 def detail_category_view(request, category_id):
     category = get_category_by_id(category_id)
+    if not category:
+        return JsonFailResponse({'code': 404, 'msg': '404'})
 
     return JsonSuccessResponse(detail_category_dict(category))
 
@@ -115,6 +119,8 @@ def category_tree_view(request):
 
 def detail_tag_view(request, tag_id):
     tag = get_tag_by_id(tag_id)
+    if not tag:
+        return JsonFailResponse({'code': 404, 'msg': '404'})
 
     return JsonSuccessResponse(detail_tag_dict(tag))
 
@@ -128,7 +134,7 @@ def tag_list_view(request):
     return JsonSuccessResponse(result)
 
 
-def create_comment(request):
+def create_comment_view(request):
     if request.method == 'POST':
 
         form = CommentForm(request.POST)
@@ -154,3 +160,20 @@ def comment_list_view(request):
     print(result)
 
     return JsonSuccessResponse(result)
+
+
+def detail_flatpage_view(request, url):
+    print(url)
+    if not url:
+        return JsonFailResponse({'msg': '缺少必要参数'})
+    urld = get_flatpage_url_dict()
+    try:
+        page_id = urld[url]
+    except:
+        return JsonFailResponse({'code': 404, 'msg': '404'})
+
+    flatpage = get_flatpage_by_id(page_id)
+    if not flatpage:
+        return JsonFailResponse({'code': 404, 'msg': '404'})
+
+    return JsonSuccessResponse({'flatpage': flatpage_to_dict(flatpage)})

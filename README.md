@@ -166,7 +166,7 @@ DeerU接口扩展，返回json数据
 >             'article_id': 12, # 哪个文章下的评论
 >             'type': 201 , # 201: 评论 ；202: 回复
 >         
->             # 关于 root_id, to_id具体解释可查看DeerU源码中 app.app_models.content_model.Comment 下的注释，里面有详细说明
+>             # 关于 root_id, to_id具体看说明看文档 http://deeru.readthedocs.io/zh_CN/v1.0.0/developer_guide/model/content_model.html#comment
 >         
 >             'to_id': -1, # 回复的评论id。对文章评论时，这一项无意义。
 >             'root_id': -1, # 根评论id。对文章评论时，这一项无意义；对评论回复时就是评论的id，对回复回复时，是最早的那条评论id
@@ -418,9 +418,9 @@ DeerU接口扩展，返回json数据
     >     >   - 201 : 对文章评论
     >     >   - 202 : 对评论评论
     > 
-    >   - to\_id : 回复的评论id，具体说明参见 [Comment](#comment-json) 结构说明，以及DeerU源码
+    >   - to\_id : 回复的评论id，具体说明参见 [Comment](#comment-json) 结构说明，以及[DeerU文档](http://deeru.readthedocs.io/zh_CN/v1.0.0/developer_guide/model/content_model.html#comment)
     > 
-    >   - root\_id : 根评论id，具体说明参见 [Comment](#comment-json) 结构说明，以及DeerU源码
+    >   - root\_id : 根评论id，具体说明参见 [Comment](#comment-json) 结构说明，以及[DeerU文档](http://deeru.readthedocs.io/zh_CN/v1.0.0/developer_guide/model/content_model.html#comment)
 
   - 返回值:
     
